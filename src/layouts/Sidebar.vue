@@ -1,53 +1,85 @@
 <template>
-  <div class="ma-12 pa-12">
-    <v-card>
-      <v-navigation-drawer
-        permanent
-        expand-on-hover
-      >
-        <v-list>
-          <v-list-item class="px-2">
-            <v-list-item-avatar>
-              <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
-            </v-list-item-avatar>
-          </v-list-item>
 
-          <v-list-item link>
+  <v-card
+    class="pa-12"
+    color="indigo darken-2"
+    flat
+  >
+    <v-card
+      elevation="12"
+      width="256"
+    >
+    <div id="nav">
+      <v-navigation-drawer
+        :value="drawer"
+        :clipped="$vuetify.breakpoint.lgAndUp"
+        app
+        floating
+        permanent
+        style="top:8px !important; min-height:100vh !important;"
+      >
+      <v-img contain
+        :src="logo"
+        size="1"
+        max-height="75"
+        max-width="150"
+        class="mx-auto"
+        />
+        <v-list
+          dense
+          rounded
+        >
+        
+        
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link :to="item.url"
+          >
+          
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
             <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                Sandra Adams
-              </v-list-item-title>
-              <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
-
-        <v-divider></v-divider>
-
-        <v-list
-          nav
-          dense
-        >
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>mdi-folder</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>My Files</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>mdi-account-multiple</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Shared with me</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>mdi-star</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Starred</v-list-item-title>
-          </v-list-item>
-        </v-list>
+        
       </v-navigation-drawer>
+        </div>
     </v-card>
-  </div>
+  
+  </v-card>
+  
+
 </template>
+
+
+<script>
+import logo from '@/assets/images/logo.png'
+  export default {
+      props: {
+      source: String,
+    },
+    computed : {
+        drawer() {
+            return this.$store.state.sidebar
+        }   
+    },
+    data () {
+      return {
+          logo,
+        items: [
+          { title: 'Dashboard', icon: 'mdi-view-dashboard', url:'/dashboard'  },
+          { title: 'Students', icon: 'mdi-forum', url:'/students'  },
+          { title: 'Instructors', icon: 'mdi-view-dashboard', url:'/instructors'  },
+          { title: 'Subjects', icon: 'mdi-forum', url:'/subjects'  },
+          { title: 'Grades', icon: 'mdi-view-dashboard', url:'/grades'  },
+         
+        ],
+      }
+    },
+  }
+</script>
