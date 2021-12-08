@@ -73,10 +73,11 @@ import logo from '@/assets/images/logo.png'
           logo,
         items: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard', url:'/dashboard'  },
-          { title: 'Students', icon: 'mdi-forum', url:'/students'  },
-          { title: 'Instructors', icon: 'mdi-view-dashboard', url:'/instructors'  },
-          { title: 'Subjects', icon: 'mdi-forum', url:'/subjects'  },
-          { title: 'Grades', icon: 'mdi-view-dashboard', url:'/grades'  },
+          { title: 'Students', icon: 'mdi-forum', url:'/students' },
+          { title: 'Instructors', icon: 'mdi-view-dashboard', url:'/instructors' },
+          { title: 'Subjects', icon: 'mdi-forum', url:'/subjects' },
+          { title: 'Grades', icon: 'mdi-view-dashboard', url:'/grades' },
+          { title: 'Announcements', icon: 'mdi-view-dashboard', url:'/announcements' },
          
         ],
       }

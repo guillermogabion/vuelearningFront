@@ -5,7 +5,7 @@
 </template>
 <script>
 
-import Base from './layouts/Base.vue'
+import Base from './layouts/includes/Base.vue'
 export default {
     components:{
         Base

@@ -63,45 +63,41 @@
     // import axios from '@/plugins/axios'
     // // import RegisterUser from '../login/register.vue'
     // import logo from '@/assets/images/logo.png'
-    // // import { login } from "@/repositories/user.api";
-    // export default {
-    //     data() {
-    //         return {
-    //             email : '',
-    //             password: '',
-    //             loading: false,
-    //             logo,
-    //             dialog: false,
-    //             drawer:false,
-    //             on_menu: true
-    //         }
-    //     },
+    import { login } from "@/repositories/user.api";
+    export default {
+        data() {
+            return {
+                email : '',
+                password: '',
+               
+            }
+        },
     //     components:{
     //         // RegisterUser,
     //     },
-    //     methods: {
-    //         Login() {
-    //             this.loading = true
-    //             const login_data = {
-    //                 email: this.email,
-    //                 password: this.password
-    //             }
-    //             this.$validator.validateAll().then(result => {
-    //                 if(result) {
-    //                     login(login_data).then(({data}) => {
-    //                         this.$store.commit('login', data)
-    //                         localStorage.setItem('token', data.access_token)
-    //                         this.$router.push({ name: "dashboard"})
-    //                     }).catch((errors)=> {
-    //                         console.log(errors)
-    //                         this.dialog = true
-    //                     })
-    //                     .finally(() => {
-    //                         this.loading = false
-    //                     })
-    //                 }
-    //             })
-    //         },
+        methods: {
+            Login() {
+                this.loading = true
+                const login_data = {
+                    email: this.email,
+                    password: this.password
+                }
+                this.$validator.validateAll().then(result => {
+                    if(result) {
+                        login(login_data).then(({data}) => {
+                            this.$store.commit('login', data)
+                            localStorage.setItem('token', data.access_token)
+                            this.$router.push({ name: "dashboard"})
+                        }).catch((errors)=> {
+                            console.log(errors)
+                            this.dialog = true
+                        })
+                        .finally(() => {
+                            this.loading = false
+                        })
+                    }
+                })
+            },
     //         create() {
     //             this.$validator.validateAll().then(result => {
     //                 if(result) {
@@ -137,8 +133,8 @@
     //             confirm:''
     //             }
     //         }
-    //     }
-    // }
+        }
+    }
 </script>
 <style scoped>
     .text{

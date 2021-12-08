@@ -1,5 +1,5 @@
 <template>
     <div>
-        this is Login
+        this is Announcements
     </div>
 </template>
