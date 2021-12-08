@@ -29,8 +29,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              outlined
-             
+              outlined  
               @click="Login()"
               color="primary"
             >
