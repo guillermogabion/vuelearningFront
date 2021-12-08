@@ -9,6 +9,7 @@ import Instructors from '@/components/instructors/index.vue'
 import Students from '@/components/students/index.vue'
 import Subject from '@/components/subjects/index.vue'
 import Announcements from '@/components/announcements/index.vue'
+import { Self } from "@/repositories/user.api";
 // import store from './store'
 // import router from './router'
 
@@ -33,6 +34,7 @@ const store = new Vuex.Store({
 });
 
 const router = new VueRouter({
+    mode: 'history',
     routes: [{
             path: "/",
             redirect: {
@@ -86,65 +88,47 @@ const router = new VueRouter({
             ],
 
             beforeEnter: (to, from, next) => {
-                if (store.state.authenticated == false) {
-                    next(false);
+
+                if (localStorage.getItem('token')) {
+                    Self().then(({ data }) => {
+                        store.commit('login', data)
+                        localStorage.setItem('token', data.access_token)
+                        next();
+                    }).catch(err => {
+                        localStorage.removeItem('token')
+                        console.log(err)
+                    })
                 } else {
                     next();
                 }
+
             }
         },
 
-        // {
-        //     path: '/dashboard',
-        //     name: 'dashboard',
-        //     component: DashboardMain,
 
-
-        // },
-        // {
-        //     path: '/grades',
-        //     name: 'grades',
-        //     component: Grades,
-        //     meta: { authOnly: true }
-
-
-        // },
-        // {
-        //     path: '/instructors',
-        //     name: 'instructors',
-        //     component: Instructors,
-        //     meta: { authOnly: true }
-
-        // },
-        // {
-        //     path: '/students',
-        //     name: 'students',
-        //     component: Students,
-        //     meta: { authOnly: true }
-
-        // },
-        // {
-        //     path: '/subjects',
-        //     name: 'subject',
-        //     component: Subject,
-        //     meta: { authOnly: true }
-
-        // },
-        // {
-        //     path: '/announcements',
-        //     name: 'announcements',
-        //     component: Subject,
-        //     meta: { authOnly: true }
-
-        // },
-
-        // {
-        //     path: "/dashboard",
-        //     name: "dashboard",
-        //     component: Dashboard
-        // }
     ]
 })
+
+// if (localStorage.getItem('token')) {
+//     Self().then(({ data }) => {
+//         store.commit('login', data)
+//         localStorage.setItem('token', data.access_token)
+//         guardRoutes(to, next)
+//     }).catch(err => {
+//         localStorage.removeItem('token')
+//         console.log(err)
+//     })
+// } else {
+//     guardRoutes(to, next)
+// }
+
+// beforeEnter: (to, from, next) => {
+//     if (store.state.authenticated == false) {
+//         next(false);
+//     } else {
+//         next();
+//     }
+// }
 
 new Vue({
     vuetify,
