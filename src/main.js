@@ -15,7 +15,7 @@ import { Self } from "@/repositories/user.api";
 
 import Login from "./components/login/login.vue"
 
-import Dashboard from "../src/Interface.vue"
+import Dashboard from "../src/layouts/includes/Base"
 import VueRouter from 'vue-router'
 
 Vue.use(Vuex);
@@ -29,7 +29,14 @@ const store = new Vuex.Store({
     mutations: {
         setAuthentication(state, status) {
             state.authenticated = status;
-        }
+        },
+        toggleSideBar(state) {
+            state.sidebar = !state.sidebar
+        },
+        login(state, data) {
+            state.user = data.user
+            console.log(state.user.id, "active User")
+        },
     }
 });
 
@@ -50,6 +57,10 @@ const router = new VueRouter({
             path: "/dashboard",
             name: "dashboard",
             component: Dashboard,
+            meta: {
+                authOnly: true,
+
+            },
             children: [{
                     path: '/grades',
                     name: 'grades',
@@ -91,7 +102,7 @@ const router = new VueRouter({
 
                 if (localStorage.getItem('token')) {
                     Self().then(({ data }) => {
-                        store.commit('login', data)
+                        // store.commit('login', data)
                         localStorage.setItem('token', data.access_token)
                         next();
                     }).catch(err => {

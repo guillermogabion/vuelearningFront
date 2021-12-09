@@ -66,7 +66,7 @@ export default {
                 }
               
                   login(login_data).then(({data}) => {
-                      this.$store.commit('login', data)
+                      // this.$store.commit('login', data)
                       localStorage.setItem('token', data.access_token)
                       this.$router.replace({ name: "dashboard"});
                   }).catch((errors)=> {
@@ -84,8 +84,7 @@ export default {
 
 <style>
 .login-page {
-  padding-left : 50em;
-  padding-right : 50em;
+
   padding-top : 10em;
 }
 .login-page-text-field{
