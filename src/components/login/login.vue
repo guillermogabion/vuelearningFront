@@ -68,17 +68,24 @@ export default {
                   login(login_data).then(({data}) => {
                       // this.$store.commit('login', data)
                       localStorage.setItem('token', data.access_token)
-                      this.$router.replace({ name: "dashboard"});
+                      this.$router.push({ name: "dashboard"});
                   }).catch((errors)=> {
                       console.log(errors)
                      
                   })
                         
-                    }
+                    
+
+                // if(this.email == '123@12.com' && this.password == '123'){
+                //   this.$router.push({ name: "dashboard" });
+                // }
               
             },
        
     }
+}
+
+
 
 </script>
 

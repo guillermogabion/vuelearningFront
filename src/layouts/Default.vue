@@ -1,8 +1,8 @@
 <template>
-    <v-app id="inspire">
+    <div>
         <!-- <app-confirm ref="app_confirm" /> -->
        <Base/>
-    </v-app>
+  </div>
 </template>
 <script>
     import Base from './includes/Base'

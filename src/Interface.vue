@@ -1,14 +1,15 @@
 <template>
   <div >
-    <Base/>
+   <Login/>
+   
   </div>
 </template>
 <script>
 
-import Base from './layouts/includes/Base.vue'
+import Login from './components/login/login.vue'
 export default {
     components:{
-        Base
+        Login
     }
    
 }

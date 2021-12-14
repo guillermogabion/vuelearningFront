@@ -1,20 +1,26 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+    <div :is="layout">
+
+    </div>
 </template>
-
 <script>
-// import Login from './components/login/login.vue'
+let layouts = require.context('./layouts/', true, /\.vue$/i)
+
+layouts = layouts.keys().reduce(
+  (temp_layouts, key) => {
+    temp_layouts[key.split('/').pop().split('.')[0]] = layouts(key).default
+    return temp_layouts
+  },
+  {}
+)
+
 export default {
-  name: 'app',
-  components: {
-
-  }
-
+  components: layouts,
+  computed: {
+    'layout': function() {
+      const component_layout = this.$route.meta.layout
+      return (component_layout || 'Default')
+    }
+  },
 }
 </script>
-
-<style>
-
-</style>
