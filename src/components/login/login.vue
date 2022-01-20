@@ -8,13 +8,16 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4 login-page-title">
-               Login Page
+               <v-avatar size="100px">
+                  <img  
+                    :src="user_logo"
+                  >
+                </v-avatar>
               </div>
             </v-list-item-content>
           </v-list-item>
             <v-text-field
               v-model="email"                   
-              color="purple darken-2"
               label="Email"
               type="email"
               required
@@ -22,7 +25,6 @@
             ></v-text-field>
             <v-text-field
               v-model="password"          
-              color="blue darken-2"
               label="Password"
               type="password"
               required
@@ -34,6 +36,7 @@
               outlined  
               @click="Login()"
               color="primary"
+              class="login-button"
             >
               Login
             </v-btn>
@@ -48,12 +51,12 @@
 
 
 <script>
-
+   import user_logo from '../../assets/images/student.png'
    import { login } from "@/repositories/user.api";
 export default {
     data(){
         return {
-       
+            user_logo,
             email: '',
             password: ''
      
@@ -94,19 +97,20 @@ export default {
 
 <style>
 .login-page {
-
   padding-top : 10em;
 }
 .login-page-text-field{
-  padding: 0.5em;
+  padding-right: 1em;
+  padding-left: 1em;
+  padding-top: 1em;
 }
 .login-page-text-button {
   padding-left: 3em;
   padding-right: 3em;
 }
 .login-page-title{
-  padding-left: 6.5em;
+  padding-top: 3em;
+  padding-left: 9em;
 }
 
 </style>
-

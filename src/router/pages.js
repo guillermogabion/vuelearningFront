@@ -7,6 +7,13 @@ import Dashboard from '@/components/dashboard/index.vue'
 
 export default [{
 
+        path: '/',
+        name: 'dashboard',
+        component: Dashboard,
+
+    },
+    {
+
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,

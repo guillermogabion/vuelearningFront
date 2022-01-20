@@ -1,7 +1,9 @@
 <template>
     <div>
+        <v-app>
         <!-- <app-confirm ref="app_confirm" /> -->
-       <Base/>
+            <Base/>
+        </v-app>
   </div>
 </template>
 <script>
