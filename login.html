@@ -1,0 +1,149 @@
+<template>
+  <!-- <div>
+    <v-main style="margin: 10% 20%;">
+    <v-container fluid fill-height>
+            <v-layout align-center justify-center>
+               <v-flex xs12 sm8 md4>
+                  <v-card
+                    class=" elevation-12 px-5"
+                    outlined
+                    width="500"
+                  >
+                    <v-list-item three-line>
+                      <v-list-item-content style="text-align: center;">
+                        <div class="text-overline mb-4 login-page-title">
+                        Login Page
+                        </div>
+                      </v-list-item-content>
+                    </v-list-item>
+                      <v-text-field
+                        v-model="email"                   
+                        color="purple darken-2"
+                        label="First name"
+                        required
+                        class="login-page-text-field"
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="password"          
+                        color="blue darken-2"
+                        label="Password"
+                        required
+                        class="login-page-text-field"
+                      ></v-text-field>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        outlined
+
+                        @click="Login()"
+                        color="primary"
+                      >
+                        Login
+                      </v-btn>
+                      <v-spacer></v-spacer>
+                    </v-card-actions>
+                  </v-card>
+               </v-flex>
+            </v-layout>
+    </v-container>
+    </v-main>
+  </div> -->
+  <v-main style="margin: 10%;">
+         <v-container fluid fill-height >
+            <v-layout align-center class="center">
+               <v-flex xs12 sm8 md4>
+                  <v-card class="elevation-12">
+                    
+                     <v-toolbar dark color="orange" >
+                      
+                        <v-toolbar-title>FoodSpark</v-toolbar-title>
+                    
+                     </v-toolbar>
+                     
+                     <v-card-text>
+                        <v-form>
+                           <v-text-field
+                              prepend-icon="mdi-account"
+                              color="orange"
+                              v-model="email"
+                              label="Email"
+                              filled
+                              dense
+                              type="text"
+                           ></v-text-field>
+                           <v-text-field
+                              prepend-icon="mdi-lock"
+                              color="orange"
+                              v-model="password"
+                              filled
+                              dense
+                              label="Password"
+                              type="password"
+                           ></v-text-field>
+                        </v-form>
+                     </v-card-text>
+                     <v-card-actions>
+                        <v-btn
+                            color="orange"
+                            dark
+                            block
+                            :loading="loading"
+                             @click="Login()"
+                        >Login</v-btn>
+                     </v-card-actions>
+                  </v-card>
+               </v-flex>
+            </v-layout>
+         </v-container>
+      </v-main>
+</template>
+
+
+
+
+
+<script>
+
+   import { login } from "@/repositories/user.api";
+export default {
+    data(){
+        return {
+       
+            email: '',
+            password: ''
+     
+        }
+    },
+    methods: {
+      Login() {
+          
+                const login_data = {
+                    email: this.email,
+                    password: this.password
+                }
+              
+                  login(login_data).then(({data}) => {
+                      this.$store.commit('login', data)
+                      localStorage.setItem('token', data.access_token)
+                      this.$router.replace({ name: "dashboard"});
+                  }).catch((errors)=> {
+                      console.log(errors)
+                     
+                  })
+                        
+                    }
+              
+            },
+       
+    }
+
+</script>
+
+<style scoped>
+  .center {
+  
+    justify-content: center;
+    }
+</style>
+
+
